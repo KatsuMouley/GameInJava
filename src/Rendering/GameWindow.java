@@ -1,6 +1,8 @@
 package Rendering;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 import javax.swing.plaf.DimensionUIResource;
@@ -27,6 +29,27 @@ public class GameWindow extends JPanel implements Runnable{
     @Override
     public void run() { 
     //GameLoop goes in here
-    
+        while (gameThread != null) {
+            
+            System.out.println("Game Running");
+
+            //Atualizar informações como posição
+            update();
+            //Renderizar a tela com a informação atualizada
+            repaint();
+        }
+    }
+
+    public void update(){
+
+    }
+
+    public void paintComponent(Graphics g){
+
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D)g;
+        g2.setColor(Color.GREEN);
+        g2.fillRect(400, 400, 70, 70);
+        g2.dispose();
     }
 }
