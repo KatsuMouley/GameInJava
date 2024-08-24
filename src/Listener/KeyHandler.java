@@ -2,7 +2,7 @@ package Listener;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+//Classe para "Ouvir" se o player está pressionando alguma tecla
 public class KeyHandler implements KeyListener {
 
     @Override

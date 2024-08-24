@@ -27,9 +27,9 @@ public class GameWindow extends JPanel implements Runnable{
 
 
     @Override
-    public void run() { 
-    //GameLoop goes in here
+    public void run() { //Mantem o jogo rodando
         while (gameThread != null) {
+    //GameLoop vem aqui dentro
             
             System.out.println("Game Running");
 
@@ -41,10 +41,12 @@ public class GameWindow extends JPanel implements Runnable{
     }
 
     public void update(){
-
+    //Atualização
+    
     }
 
     public void paintComponent(Graphics g){
+        //Renderizador de grafícos 2D
 
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
