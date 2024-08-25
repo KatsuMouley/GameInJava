@@ -19,8 +19,8 @@ public class GameWindow extends JPanel implements Runnable{
     Thread gameThread;
 
     //Player Default Position
-    int player_X = 400, player_Y = 400;
-    int player_Speed = 4;
+    int player_X = (screenWidth/2)-100/*Player width*/, player_Y = (screenHeight/2);
+    int player_Speed = 7;
 
     public GameWindow(){
         this.setPreferredSize(new DimensionUIResource(screenWidth, screenHeight));
@@ -89,13 +89,15 @@ public class GameWindow extends JPanel implements Runnable{
     
     }
 
+    //Agora precisamos adicionar as seguintes mecânicas
+    //Gravidade Colisão com objetos e os próprios objetos em si
     public void paintComponent(Graphics g){
         //Renderizador de grafícos 2D
 
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
-        g2.setColor(Color.GREEN);
-        g2.fillRect(player_X, player_Y, 70, 70 );
+        g2.setColor(Color.white);
+        g2.fillRect(player_X, player_Y, 100, 100 );
         g2.dispose();
     }
 }
