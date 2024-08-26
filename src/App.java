@@ -1,10 +1,22 @@
 
-import Display.DisplayScreen;
+
+import javax.swing.JFrame;
+import rendering.GameWindow;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        DisplayScreen display = new DisplayScreen("ShapedDuels");
-        display.run();
+        JFrame window = new JFrame();
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setResizable(false);
+        window.setTitle("ShapedWars");
 
+        GameWindow gamePanel = new GameWindow();
+        window.add(gamePanel);
+        window.pack();
+
+        window.setLocationRelativeTo(null);
+        window.setVisible(true);
+
+        gamePanel.startGameThread();
     }
 }

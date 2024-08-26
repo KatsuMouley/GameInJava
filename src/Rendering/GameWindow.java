@@ -1,12 +1,13 @@
-package Rendering;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 
-import javax.swing.JPanel;
-import javax.swing.plaf.DimensionUIResource;
-
-import KeyListener.KeyHandler;
+package rendering;
+ import java.awt.Color;
+ import java.awt.Graphics;
+ import java.awt.Graphics2D;
+ 
+ import javax.swing.JPanel;
+ import javax.swing.plaf.DimensionUIResource;
+ 
+ import keylistener.KeyHandler;
 
 public class GameWindow extends JPanel implements Runnable{
     //SETTINGS
