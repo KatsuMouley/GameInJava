@@ -6,7 +6,8 @@ package keylistener;
 //Classe para "Ouvir" se o player está pressionando alguma tecla
 public class KeyHandler implements KeyListener {
     //Player movements
-    public boolean upPressed, downPressed, leftPressed, rightPressed;
+    public boolean upWPressed, downSPressed, leftAPressed, rightDPressed, upPressed, downPressed, leftPressed, rightPressed;
+    public boolean dash;
     //User Interface
     public boolean gamePaused = false;
 
@@ -23,15 +24,29 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
+        
+        if (code == KeyEvent.VK_SPACE && dash == false) 
+        {dash = true;} else {dash = false;}
 
         //DETECTA SE WSAD ESTÁ PRESSIONADO
         if (code == KeyEvent.VK_W) {
-            upPressed = true;           }
+            upWPressed = true;           }
         if (code == KeyEvent.VK_S) {
-            downPressed = true;         }
+            downSPressed = true;         }
         if (code == KeyEvent.VK_A) {
-            leftPressed = true;         }
+            leftAPressed = true;         }
         if (code == KeyEvent.VK_D) {
+            rightDPressed = true;        }
+
+            
+        //DETECTA SE Up Down Right Left ESTÁ PRESSIONADO
+        if (code == KeyEvent.VK_UP) {
+            upPressed = true;           }
+        if (code == KeyEvent.VK_DOWN) {
+            downPressed = true;         }
+        if (code == KeyEvent.VK_LEFT) {
+            leftPressed = true;         }
+        if (code == KeyEvent.VK_RIGHT) {
             rightPressed = true;        }
     }
 
@@ -42,13 +57,24 @@ public class KeyHandler implements KeyListener {
         
         //DETECTA SE WSAD FOI SOLTO
         if (code == KeyEvent.VK_W) {
-            upPressed = false;          }
+            upWPressed = false;           }
         if (code == KeyEvent.VK_S) {
-            downPressed = false;        }
+            downSPressed = false;         }
         if (code == KeyEvent.VK_A) {
-            leftPressed = false;        }
+            leftAPressed = false;         }
         if (code == KeyEvent.VK_D) {
-            rightPressed = false;       }
+            rightDPressed = false;        }
+
+            
+        //DETECTA SE Up Down Right Left FOI SOLTO
+        if (code == KeyEvent.VK_UP) {
+            upPressed = false;           }
+        if (code == KeyEvent.VK_DOWN) {
+            downPressed = false;         }
+        if (code == KeyEvent.VK_LEFT) {
+            leftPressed = false;         }
+        if (code == KeyEvent.VK_RIGHT) {
+            rightPressed = false;        }
     }
     
 }
