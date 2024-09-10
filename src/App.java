@@ -1,4 +1,3 @@
-
 import javax.swing.JFrame;
 import rendering.GameWindow;
 
@@ -17,5 +16,5 @@ public class App {
         window.setVisible(true);
 
         gamePanel.startGameThread();
-    }
-}
+    }}
+
