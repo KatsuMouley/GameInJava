@@ -1,4 +1,4 @@
-Katsu - Então queridos colegas, vocês devem estar vendo este código e se pergunto mas O QUE CARALHOS
+Katsu - Então queridos colegas, vocês devem estar vendo este código e se perguntando mas O QUE CARALHOS???
 não se preocupe, eu trago aqui um simples guia sobre o código
 primeiramente TUDO se converge para o arquivo GameWindow.java, onde se encontra o rendering
 vocês devem procurar por 3 coisas, 
@@ -17,4 +17,5 @@ bom
  }
  por enquanto o que estou fazendo dentro desses dois
  -Players informations
- -Screen
+ -Screen Resolution
+e etc
