@@ -7,7 +7,7 @@ package keylistener;
 public class KeyHandler implements KeyListener {
     //Player movements
     public boolean upWPressed, downSPressed, leftAPressed, rightDPressed, upPressed, downPressed, leftPressed, rightPressed;
-    public boolean dash;
+    public boolean dash1;
     //User Interface
     public boolean gamePaused = false;
 
@@ -25,8 +25,10 @@ public class KeyHandler implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
         
-        if (code == KeyEvent.VK_SPACE && dash == false) 
-        {dash = true;} else {dash = false;}
+        if (code == KeyEvent.VK_R && dash1 == false) 
+        {dash1 = true;} 
+        if (code == KeyEvent.VK_SPACE && dash1 == true) 
+        {dash1 = false;} 
 
         //DETECTA SE WSAD ESTÁ PRESSIONADO
         if (code == KeyEvent.VK_W) {

@@ -3,12 +3,12 @@ package players;
 import java.awt.Color;
 import java.util.ArrayList;
 
-public class DrawPlayer {
+public class Players {
     ArrayList<Player> players = new ArrayList<Player>();
 
-    public DrawPlayer() {
-        players.add(new Player(Color.blue));
-        players.add(new Player(Color.orange));
+    public void setPlayers() {
+        players.add(new Player(Color.red));
+        players.add(new Player(Color.YELLOW));
     }
 
     public ArrayList<Player> getPlayers() {
