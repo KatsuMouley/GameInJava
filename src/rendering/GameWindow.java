@@ -1,4 +1,3 @@
-
 package rendering;
 
 import java.awt.Color;
