@@ -19,7 +19,7 @@ public class Player extends JPanel {
 
     // Movement parameters
     private int x = 500, y = 320;
-    private int player_Speed = 7;
+    private int player_Speed = 4;
     private int player_boost = 5;
     private int move_X = 0;
     private ArrayList<Position> Positions = new ArrayList<>();
@@ -459,7 +459,7 @@ public class Player extends JPanel {
         Positions.add(new Position(x, y));
 
         // Limit the size of the positions list if needed
-        if (Positions.size() > 60) {
+        if (Positions.size() > 30) {
             Positions.remove(0); // Remove the oldest position
         }
     }
@@ -467,13 +467,24 @@ public class Player extends JPanel {
     public void drawDash(Graphics2D g2, KeyHandler keyH) {
         if (keyH.dash1) {
             // Iterate over positions and draw blue squares
+            int size = Positions.size();
+
             for (int i = 0; i < Positions.size(); i++) {
                 Position position = Positions.get(i);
-                int r = cor.getRed();
+                int centerX = (position.x)/*+(size/2)*/;
+                int centerY = (position.y)/*+(size/2)*/;
+                int r = cor.getRed()-(size*4)-20;
                 int g = cor.getGreen();
                 int b = cor.getBlue();
-                g2.setColor(new Color(r, g, b, 35));
-                g2.fillOval(position.x, position.y, playerWidth, playerHeight);
+                int alpha = 255;
+                if (size > Positions.size()) {
+                    size = Positions.size();
+                } else {
+                    size--;
+                }
+                System.out.println( r +"   "+g +"   "+b+"  |  "+Positions.size()+"  | "+size);
+                g2.setColor(new Color(r, g, b, alpha));
+                g2.fillOval(centerX, centerY, (int)playerWidth/*-size*/, (int)playerHeight/*-size*/);
 
                 // Reduce the lifetime of the position
                 position.reduceLifetime();

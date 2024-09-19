@@ -2,7 +2,7 @@ package players;
 
 class Position {
     int x, y;
-    int lifetime = 50; // Number of frames this position will last
+    int lifetime = 20; // Number of frames this position will last
 
     public Position(int x, int y) {
         this.x = x;
