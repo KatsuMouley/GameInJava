@@ -3,6 +3,7 @@ package players;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+// import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -23,6 +24,8 @@ public class Player extends JPanel {
     private int player_boost = 5;
     private int move_X = 0;
     private ArrayList<Position> Positions = new ArrayList<>();
+
+    // private Random random = new Random();
 
     // Physics parameters
     private double gravity = 0.5; // Gravity force
@@ -459,7 +462,7 @@ public class Player extends JPanel {
         Positions.add(new Position(x, y));
 
         // Limit the size of the positions list if needed
-        if (Positions.size() > 30) {
+        if (Positions.size() > 60) {
             Positions.remove(0); // Remove the oldest position
         }
     }
@@ -467,16 +470,17 @@ public class Player extends JPanel {
     public void drawDash(Graphics2D g2, KeyHandler keyH) {
         if (keyH.dash1) {
             // Iterate over positions and draw blue squares
-            int size = Positions.size();
+            int size = (Positions.size());
 
             for (int i = 0; i < Positions.size(); i++) {
+                //int randV = random.nextInt(5, 20);
                 Position position = Positions.get(i);
                 int centerX = (position.x)/*+(size/2)*/;
                 int centerY = (position.y)/*+(size/2)*/;
-                int r = cor.getRed()-(size*4)-20;
+                int r = cor.getRed()-(size*4);
                 int g = cor.getGreen();
                 int b = cor.getBlue();
-                int alpha = 255;
+                int alpha = 60-size;
                 if (size > Positions.size()) {
                     size = Positions.size();
                 } else {
@@ -484,7 +488,7 @@ public class Player extends JPanel {
                 }
                 System.out.println( r +"   "+g +"   "+b+"  |  "+Positions.size()+"  | "+size);
                 g2.setColor(new Color(r, g, b, alpha));
-                g2.fillOval(centerX, centerY, (int)playerWidth/*-size*/, (int)playerHeight/*-size*/);
+                g2.fillOval(centerX, centerY, (int)(playerWidth/*-size*/), (int)(playerHeight/*-size*/));
 
                 // Reduce the lifetime of the position
                 position.reduceLifetime();

@@ -31,6 +31,9 @@ public class Hitbox {
         if (isColliding(player1, player2)) {
             System.out.println("Collision detected between " + player1.getName() + " and " + player2.getName());
             resolveCollision(player1, player2);
+        }else {
+            player1.setGravity(0.5);
+            player2.setGravity(0.5);
         }
     }
 
@@ -42,28 +45,49 @@ public class Hitbox {
                 player1.getY() + player1.getHeight() > player2.getY();
     }
 
-    private void resolveCollision(Player player1, Player player2) {
-        // // Calculate the overlap on the x and y axes
-        // int overlapX = (player1.getX() + player1.getWidth()) - player2.getX();
-        // int overlapY = (player1.getY() + player1.getHeight()) - player2.getY();
+    public void resolveCollision(Player player1, Player player2) {
 
-        // // Check which overlap is smaller and resolve accordingly
-        // if (overlapX < overlapY) {
-        // // Resolve collision along the x-axis
-        // if (player1.getX() < player2.getX()) {
-        // player1.setX(player1.getX() - overlapX); // Push player1 left
-        // } else {
-        // player1.setX(player1.getX() + overlapX); // Push player1 right
-        // }
-        // } else {
-        // // Resolve collision along the y-axis
-        // if (player1.getY() < player2.getY()) {
-        // player1.setY(player1.getY() - overlapY); // Push player1 up
-        // } else {
-        // player1.setY(player1.getY() + overlapY); // Push player1 down
-        // }
-        // }
-        // ESTA COLISÃO NÃO ESTÁ FUNCIONANDO
+        float overlapX = Math.min(
+            player1.getX() + player1.getWidth() - player2.getX()-2, 
+            player2.getX() + player2.getWidth() - player1.getX()-2
+        );
+    
+        float overlapY = Math.min(
+            player1.getY() + player1.getHeight() - player2.getY()-2, 
+            player2.getY() + player2.getHeight() - player1.getY()-2
+        );
+    
+        // Definir um limite para considerar quando a colisão no eixo Y é significativa
+        float verticalThreshold = -10;  // Pequena tolerância para evitar movimento indesejado no eixo Y
+    
+        // Resolver a colisão
+        if (overlapX < overlapY) {
+            // Resolver no eixo X
+            if (player1.getX() < player2.getX()) {
+                player1.setX((int) (player1.getX() - overlapX)); 
+                player2.setX((int) (player2.getX() + overlapX)); 
+            } else {
+                player1.setX((int) (player1.getX() + overlapX)); 
+                player2.setX((int) (player2.getX() - overlapX)); 
+            }
+        } else if (overlapY > verticalThreshold) {
+            // Resolver no eixo Y apenas se a colisão for maior que o limite
+            if (player1.getY() < player2.getY()) {
+                player1.setY((int) (player1.getY() - overlapY)); // Move player1 para cima
+                player2.setY((int) (player2.getY() + overlapY)); // Move player2 para baixo
+                player1.setGravity(0); 
+                player2.setGravity(0.5);
+                player1.setJumping(false); // Reset jumping state when touching the ground
+            } else if (player1.getY() > player2.getY()) {
+                player1.setY((int) (player1.getY() + overlapY)); // Move player1 para baixo
+                player2.setY((int) (player2.getY() - overlapY)); // Move player2 para cima
+                player2.setGravity(0);
+                player1.setGravity(0.5);
+                player2.setJumping(false); // Reset jumping state when touching the ground
+            }
+        }
     }
-
+    
 }
+
+
