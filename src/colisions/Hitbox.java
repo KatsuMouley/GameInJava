@@ -84,6 +84,7 @@ public class Hitbox {
                 player2.setGravity(0);
                 player1.setGravity(0.5);
                 player2.setJumping(false); // Reset jumping state when touching the ground
+                
             }
         }
     }

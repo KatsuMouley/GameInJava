@@ -103,36 +103,51 @@ public class GameWindow extends JPanel implements Runnable {
     }
 
     @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D) g;
+public void paintComponent(Graphics g) {
+    super.paintComponent(g);
+    Graphics2D g2 = (Graphics2D) g;
 
-        // Calcular a escala uniforme com base no tamanho da janela
-        Dimension screenSize = getSize();
-        double scaleWidth = screenSize.getWidth() / baseScreenWidth;
-        double scaleHeight = screenSize.getHeight() / baseScreenHeight;
+    // Calcular a escala uniforme com base no tamanho da janela
+    Dimension screenSize = getSize();
+    double scaleWidth = screenSize.getWidth() / baseScreenWidth;
+    double scaleHeight = screenSize.getHeight() / baseScreenHeight;
 
-        // Escolher a menor escala para manter a proporção
-        scale = Math.min(scaleWidth, scaleHeight);
+    // Escolher a menor escala para manter a proporção
+    scale = Math.min(scaleWidth, scaleHeight);
 
-        // Calcular o offset para centralizar o conteúdo
-        offsetX = (int) ((screenSize.getWidth() - (baseScreenWidth * scale)) / 2);
-        offsetY = (int) ((screenSize.getHeight() - (baseScreenHeight * scale)) / 2);
+    // Calcular o offset para centralizar o conteúdo
+    offsetX = (int) ((screenSize.getWidth() - (baseScreenWidth * scale)) / 2);
+    offsetY = (int) ((screenSize.getHeight() - (baseScreenHeight * scale)) / 2);
 
-        // Aplicar a transformação de escala ao contexto gráfico
-        g2.translate(offsetX, offsetY); // Centralizar
-        g2.scale(scale, scale); // Aplicar escala uniforme
+    // Aplicar a transformação de escala ao contexto gráfico
+    g2.translate(offsetX, offsetY); // Centralizar
+    g2.scale(scale, scale); // Aplicar escala uniforme
 
-        // Desenhar o quadrado preto como background (atrás de tudo)
-        g2.setColor(Color.BLACK);
-        g2.fillRect(0, 0, baseScreenWidth, baseScreenHeight); // Desenha o fundo preto
+    // Desenhar o fundo
+    g2.setColor(Color.BLACK);
+    g2.fillRect(0, 0, baseScreenWidth, baseScreenHeight); // Desenha o fundo preto
 
-        // Desenhar jogadores ajustados à escala e centralizados
-        players.getPlayers().get(0).drawDash(g2, keyH);
-        players.getPlayers().get(1).drawDash(g2, keyH);
-        players.getPlayers().get(0).drawRect(g2);
-        players.getPlayers().get(1).drawRect(g2);
+    // Desenhar a grade se estiver visível
+    if (keyH.gridVisible) { // Verifica se a grade deve ser desenhada
+        g2.setColor(Color.GRAY); // Cor da grade
+        int gridSize = 50; // Tamanho de cada célula da grade
 
-        g2.dispose();
+        for (int x = 0; x < baseScreenWidth; x += gridSize) {
+            g2.drawLine(x, 0, x, baseScreenHeight); // Linhas verticais
+        }
+
+        for (int y = 0; y < baseScreenHeight; y += gridSize) {
+            g2.drawLine(0, y, baseScreenWidth, y); // Linhas horizontais
+        }
     }
+
+    // Desenhar jogadores ajustados à escala e centralizados
+    players.getPlayers().get(0).drawDash(g2, keyH);
+    players.getPlayers().get(1).drawDash(g2, keyH);
+    players.getPlayers().get(0).drawRect(g2);
+    players.getPlayers().get(1).drawRect(g2);
+
+    g2.dispose();
+}
+
 }

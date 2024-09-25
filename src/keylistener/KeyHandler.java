@@ -9,6 +9,7 @@ public class KeyHandler implements KeyListener {
     public boolean dash1;
     //User Interface
     public boolean gamePaused = false;
+    public boolean gridVisible = false;
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -22,6 +23,7 @@ public class KeyHandler implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        
         int code = e.getKeyCode();
         
         if (code == KeyEvent.VK_R && dash1 == false) 
@@ -29,6 +31,12 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_SPACE && dash1 == true) 
         {dash1 = false;} 
 
+
+        //ativa a grade
+        if (code == KeyEvent.VK_G) {
+            gridVisible = !gridVisible; // Alterna o estado da grade
+        }
+        
         //DETECTA SE WSAD ESTÁ PRESSIONADO
         if (code == KeyEvent.VK_W) {
             upWPressed = true;           }
